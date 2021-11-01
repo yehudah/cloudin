@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="thumbnails"></div>
+    <div id="wrap">
+        <button id="upload_widget" class="cloudinary-button">Upload files</button>
+    </div>
+
+</body>
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script type="text/javascript">
+    const clWidget = cloudinary.createUploadWidget({
+            cloudName: 'yehudah',
+            tags: ['cl-yehuda'],
+            maxImageWidth: 750,
+            maxImageHeight: 750,
+            validateMaxWidthHeight: true,
+            thumbnails: '.thumbnails',
+            sources: ['local'],
+            uploadPreset: 'bwdigg9g'}, (error, result) => {
+                if (!error && result && result.event === "success") {
+                    console.log('Done! Here is the image info: ', result.info);
+                }
+            }
+    )
+
+    document.getElementById("upload_widget").addEventListener("click", function(){
+        clWidget.open();
+    }, false);
+</script>
+</html>
